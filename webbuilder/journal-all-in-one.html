@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light" data-lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal — Oriane NYIKEINE</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+/* ===== VARIABLES ===== */
+:root {
+  --bg:           #ffffff;
+  --bg-alt:       #ede9ff;
+  --text:         #1a1a2e;
+  --text-muted:   #6b6b80;
+  --accent:       #7c3aed;
+  --accent-soft:  #ede9fe;
+  --border:       #e5e1f5;
+  --card-bg:      #ffffff;
+  --nav-bg:       rgba(255, 255, 255, 0.85);
+  --shadow:       0 4px 32px rgba(124, 58, 237, 0.10);
+  --t:            0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bg-glass:     rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="dark"] {
+  --bg:           #0d0b17;
+  --bg-alt:       #1e1245;
+  --text:         #ede9fe;
+  --text-muted:   #9490b0;
+  --accent:       #a78bfa;
+  --accent-soft:  #2d2b4e;
+  --border:       #2d2b4e;
+  --card-bg:      #18163a;
+  --nav-bg:       rgba(13, 11, 23, 0.9);
+  --shadow:       0 4px 32px rgba(167, 139, 250, 0.10);
+  --bg-glass:     rgba(13, 11, 23, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: transparent;
+  color: var(--text);
+  line-height: 1.6;
+  transition: color var(--t);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--bg);
+  transition: background var(--t);
+}
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== BILINGUISME ===== */
+[data-lang="en"] .lang-fr { display: none; }
+[data-lang="fr"] .lang-en { display: none; }
+
+/* ===== UTILITAIRES ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.accent { color: var(--accent); }
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--t), border-color var(--t);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  transition: opacity var(--t);
+}
+.nav-logo:hover { opacity: 0.75; }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color var(--t);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width var(--t);
+  border-radius: 2px;
+}
+
+.nav-link:hover,
+.nav-link.active { color: var(--text); }
+
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.btn-lang {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: all var(--t);
+}
+.btn-lang:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+.btn-theme {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all var(--t);
+  color: var(--accent);
+}
+.btn-theme:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+[data-theme="light"] .icon-moon { display: none; }
+[data-theme="dark"]  .icon-sun  { display: none; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 7rem 2.5rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-content { flex: 1; }
+
+.hero-eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-name {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+
+.hero-desc {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 2.5rem;
+  text-align: justify;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.75rem;
+  border-radius: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t);
+  border: 2px solid transparent;
+}
+
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: transparent; border-color: var(--accent); color: var(--accent); }
+
+.btn-ghost { background: transparent; border-color: var(--border); color: var(--text-muted); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Visuel hero */
+.hero-visual {
+  flex: 0 0 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+
+.hero-blob {
+  position: absolute;
+  width: 360px; height: 440px;
+  background: var(--accent-soft);
+  border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+  animation: blobMorph 9s ease-in-out infinite;
+  transition: background var(--t);
+}
+
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+  25%       { border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%; }
+  50%       { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; }
+  75%       { border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%; }
+}
+
+.hero-photo-frame {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  border-radius: 160px 160px 130px 130px;
+  overflow: hidden;
+  box-shadow: 0 28px 72px rgba(124, 58, 237, 0.32);
+  border: 3px solid var(--accent-soft);
+  transition: border-color var(--t), box-shadow var(--t);
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-photo:hover { transform: scale(1.04); }
+
+/* ===== EN-TÊTE DE PAGE (journal, work) ===== */
+.page-header {
+  padding: 9rem 0 3.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--t);
+}
+
+.page-header .container { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.page-subtitle {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  max-width: 500px;
+}
+
+/* ===== TITRE DE SECTION ===== */
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 0;
+  width: 2.5rem; height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ===== SECTION À PROPOS ===== */
+.about {
+  padding: 7rem 0 8rem;
+  background: var(--bg-alt);
+  transition: background var(--t);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about::before,
+.about::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 90px;
+  pointer-events: none;
+  z-index: 2;
+}
+.about::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+}
+.about::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+}
+.about > .container {
+  position: relative;
+  z-index: 3;
+}
+
+.about > .container > .section-title { margin-bottom: 3rem; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+.about-text p:last-child { margin-bottom: 0; }
+
+/* Skills visualization */
+.about-skills-viz {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.skills-piste-header {
+  margin-bottom: 1.5rem;
+}
+.skills-piste-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.skills-piste-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.skills-piste-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.skills-group-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 1.25rem 0 0.75rem;
+}
+.skills-group-label:first-of-type { margin-top: 0; }
+
+.skill-viz-item { margin-bottom: 1.25rem; }
+.skill-viz-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.skill-viz-name  { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.skill-viz-level { font-size: 0.75rem;  color: var(--text-muted); }
+
+.skill-viz-track {
+  height: 5px;
+  background: rgba(124,58,237,0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.skill-viz-fill {
+  height: 100%;
+  border-radius: 10px;
+  width: 0%;
+  background: linear-gradient(90deg, #b45309, #f59e0b);
+  transition: width 1.3s cubic-bezier(.4,0,.2,1);
+}
+
+/* IA block */
+.skills-ia-block {
+  background: rgba(124,58,237,0.07);
+  border: 1px solid rgba(124,58,237,0.18);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  margin: 1rem 0;
+}
+.skills-ia-text {
+  font-size: 0.8125rem;
+  color: var(--accent);
+  font-style: italic;
+  line-height: 1.55;
+  margin-bottom: 0.625rem;
+}
+
+/* Bottom strip — 3 cartes */
+.skills-bottom-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.skills-strip-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.875rem 0.875rem 1rem;
+  transition: background var(--t), border-color var(--t);
+}
+.skills-strip-card h4 {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+.strip-lang-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+.strip-lang-badge {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.strip-soft-item {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+.strip-soft-item::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.strip-xp-item {
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+.strip-xp-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Legacy skill tags (conservés) */
+.skills-label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+.skills-grid { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+.skill-tag {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--t);
+}
+.skill-tag:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-bottom-strip { grid-template-columns: 1fr; }
+}
+
+/* ===== JOURNAL — GRILLE D'ARTICLES ===== */
+.journal-main {
+  padding: 3.5rem 0 6rem;
+  flex: 1;
+}
+
+.journal-main .container {
+  max-width: 1400px;
+}
+
+.journal-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0 auto;
+}
+
+.article-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  transition: all var(--t);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.article-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.article-date {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.article-title {
+  font-size: 1.25rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.article-body {
+  position: relative;
+  max-height: 4.95rem;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 0.625rem;
+}
+
+.article-card.expanded .article-body {
+  max-height: 600px;
+}
+
+.article-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, transparent, var(--card-bg));
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.article-card.expanded .article-fade { opacity: 0; }
+
+.article-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 1rem;
+  display: block;
+  transition: color var(--t);
+}
+.article-toggle:hover { color: var(--text); }
+
+.toggle-less { display: none; }
+.article-card.expanded .toggle-more { display: none; }
+.article-card.expanded .toggle-less { display: inline; }
+
+.article-title { cursor: pointer; }
+
+.article-excerpt {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 0;
+  text-align: justify;
+}
+
+
+.article-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: opacity var(--t);
+}
+.article-link:hover { opacity: 0.7; }
+
+.article-tag {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  align-self: flex-start;
+}
+
+/* ===== MY WORK — CASE STUDIES ===== */
+.work-main {
+  padding: 2rem 0 6rem;
+  flex: 1;
+}
+
+.project-section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--t);
+}
+.project-section:last-child { border-bottom: none; }
+
+.project-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr;
+  gap: 4rem;
+  align-items: center;
+}
+.project-layout.reverse { grid-template-columns: 0.7fr 1.5fr; }
+.project-layout.reverse .project-visual { order: 2; }
+.project-layout.reverse .project-info  { order: 1; }
+
+.project-visual {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  aspect-ratio: 16/9;
+  background: var(--bg-alt);
+  position: relative;
+  transition: box-shadow var(--t);
+}
+.project-visual:hover {
+  box-shadow: 0 28px 80px rgba(124,58,237,0.18);
+}
+.project-screenshot {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.project-visual:hover .project-screenshot { transform: scale(1.03) translateY(-1%); }
+
+.project-visual-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 0.5rem;
+}
+.placeholder-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: center; line-height: 1.2;
+  color: rgba(0,0,0,0.45);
+}
+.placeholder-sub {
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(0,0,0,0.3); text-align: center;
+}
+
+.project-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent);
+  display: block; margin-bottom: 0.875rem;
+}
+.project-name {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  letter-spacing: -0.02em; margin-bottom: 1.25rem;
+}
+.project-description {
+  font-size: 1rem; color: var(--text-muted);
+  line-height: 1.8; margin-bottom: 1.75rem;
+}
+.project-meta {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--t);
+}
+.meta-row { display: flex; gap: 0.75rem; font-size: 0.875rem; }
+.meta-label { color: var(--text-muted); min-width: 65px; font-weight: 500; }
+.meta-value { color: var(--text); }
+
+.project-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+
+/* ===== ÉVENTAIL DE CARTES — HOME ===== */
+/* ===== SCROLL HORIZONTAL PROJETS — HOME ===== */
+.hscroll-section {
+  padding: 4rem 0 3rem;
+  overflow: hidden;
+}
+.hscroll-hint {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(107,107,128,0.4);
+  margin-top: 1.75rem;
+}
+.hscroll-track-wrap {
+  overflow: hidden;
+  cursor: none;
+  padding: 3rem 0 1.5rem;
+  position: relative;
+}
+.hscroll-track-wrap::before,
+.hscroll-track-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 140px;
+  z-index: 3;
+  pointer-events: none;
+}
+.hscroll-track-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+}
+.hscroll-track-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+}
+.hscroll-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  padding: 0 10vw;
+  will-change: transform;
+  transition: transform 0.08s linear;
+}
+.hscroll-card {
+  width: 310px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.14);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.32s cubic-bezier(0.34,1.2,0.64,1),
+              box-shadow 0.32s ease,
+              border-color var(--t),
+              z-index 0s;
+  position: relative;
+  z-index: 1;
+  margin-left: -20px;
+}
+.hscroll-card:first-child { margin-left: 0; }
+.hscroll-card:hover {
+  transform: translateY(-24px) scale(1.06);
+  z-index: 5;
+  box-shadow: 0 30px 65px rgba(124,58,237,0.28);
+  border-color: var(--accent);
+}
+.hscroll-img {
+  height: 360px;
+  overflow: hidden;
+}
+.hscroll-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top; display: block;
+  transition: transform 0.4s ease;
+}
+.hscroll-card:hover .hscroll-img img { transform: scale(1.05); }
+.hscroll-label {
+  padding: 1rem 1rem 1.1rem;
+  background: var(--card-bg);
+  transition: background var(--t);
+  text-align: center;
+}
+.hscroll-label p {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+.hscroll-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+}
+
+/* Curseur custom */
+.hscroll-cursor {
+  position: fixed;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: #fff;
+}
+.hscroll-track-wrap:hover .hscroll-cursor { opacity: 1; }
+
+/* Mobile : scroll natif */
+@media (max-width: 768px) {
+  .hscroll-track-wrap { overflow-x: auto; cursor: auto; -webkit-overflow-scrolling: touch; }
+  .hscroll-track { transform: none !important; transition: none; padding: 0 1.25rem; }
+  .hscroll-card { width: 200px; margin-left: 0; }
+}
+
+/* ===== MY WORK — GRILLE (conservée pour pages secondaires) ===== */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all var(--t);
+  display: flex;
+  flex-direction: column;
+}
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.project-thumb {
+  height: 190px;
+  background: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--t);
+}
+
+.project-thumb-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-thumb-label {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-thumb-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  transition: color var(--t);
+}
+
+.project-card:hover .project-thumb-num { color: var(--accent-soft); }
+
+.project-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.project-desc {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-tag {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.2rem 0.65rem;
+  border-radius: 5px;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.project-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.375rem 0.875rem;
+  border-radius: 5px;
+  transition: all var(--t);
+}
+.project-link:hover { color: var(--accent); border-color: var(--accent); }
+.project-link.disabled { opacity: 0.4; pointer-events: none; cursor: not-allowed; }
+
+/* ===== WEBBUILDER STUDIO ===== */
+.wbs-section {
+  height: 700vh;
+  position: relative;
+}
+.wbs-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+.wbs-visual {
+  width: 100%;
+  height: 100vh;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  flex-shrink: 0;
+  will-change: height, border-radius, box-shadow;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wbs-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  will-change: transform;
+}
+.wbs-text {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--bg-glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px 16px 0 0;
+  padding: 2.5rem 3rem;
+  flex-shrink: 0;
+  will-change: transform;
+  transform: translateY(120px);
+}
+.wbs-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.wbs-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.wbs-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .wbs-section { height: auto; }
+  .wbs-pin { position: static; height: auto; }
+  .wbs-visual { height: 55vw; }
+  .wbs-text { transform: translateY(-40px); }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+  transition: border-color var(--t);
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.footer-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.footer-links { display: flex; gap: 1.75rem; }
+
+.footer-link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  transition: color var(--t);
+  position: relative;
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width var(--t);
+}
+.footer-link:hover { color: var(--accent); }
+.footer-link:hover::after { width: 100%; }
+
+.footer-copy {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+
+  .hero {
+    flex-direction: column-reverse;
+    padding: 6rem 1.5rem 3rem;
+    text-align: center;
+    gap: 2rem;
+    min-height: auto;
+    padding-top: 7rem;
+  }
+
+  .hero-desc { margin: 0 auto 2.5rem; }
+  .hero-cta { justify-content: center; }
+
+  .hero-visual       { flex: 0 0 240px; height: 300px; }
+  .hero-blob         { width: 220px; height: 270px; }
+  .hero-photo-frame  { width: 200px; height: 265px; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .container  { padding: 0 1.25rem; }
+
+  .project-layout,
+  .project-layout.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .project-layout.reverse .project-visual { order: 0; }
+  .project-layout.reverse .project-info  { order: 0; }
+
+  .cards-deck { gap: 0.875rem; }
+  .preview-card { width: 140px; }
+  .preview-card-thumb { height: 85px; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: 2.75rem; }
+}
+
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">ON.</a>
+
+    <ul class="nav-links">
+      <li>
+        <a href="index.html" class="nav-link">
+          <span class="lang-fr">Accueil</span>
+          <span class="lang-en">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="journal.html" class="nav-link active">
+          <span class="lang-fr">Journal</span>
+          <span class="lang-en">Journal</span>
+        </a>
+      </li>
+      <li>
+        <a href="work.html" class="nav-link">
+          <span class="lang-fr">Mes projets</span>
+          <span class="lang-en">My Work</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="nav-controls">
+      <button class="btn-lang" id="langToggle" aria-label="Changer la langue">EN</button>
+      <button class="btn-theme" id="themeToggle" aria-label="Changer le thème">
+        <span class="icon-sun">☀</span>
+        <span class="icon-moon">☽</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== EN-TÊTE ===== -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="section-title">
+        <span class="lang-fr">Journal de bord</span>
+        <span class="lang-en">Journal</span>
+      </h1>
+    </div>
+  </header>
+
+  <!-- ===== ARTICLES ===== -->
+  <main class="journal-main">
+    <div class="container">
+      <div class="journal-grid">
+
+        <!-- Article 1 — L'IA -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">L'arrivée de l'IA a tout remis en question.</span>
+            <span class="lang-en">The arrival of AI put everything in question.</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">Quand l'IA générative a commencé à se démocratiser, ça a d'abord ressemblé à un bruit de fond. Puis le bruit est devenu assourdissant. Les fils LinkedIn se sont remplis de posts catastrophistes, les chaînes YouTube titraient sur la fin du web design, sur les agences qui allaient fermer, sur les freelances qui allaient disparaître.<br><br>J'étais en train de construire une activité autour de la création de sites. La question de me réorienter s'est posée, je ne vais pas prétendre le contraire. Pendant un moment, je n'étais pas sûre que ce que je construisais avait encore un sens. Ce qui m'en a sortie, c'est d'avoir décidé de tester plutôt que de croire les titres. Je me suis renseignée sur Claude Code, je l'ai installé pour comprendre ce qu'il avait dans le ventre, voir de quoi il était capable. Et je suis, un peu malgré moi, « tombée dans la marmite ». J'ai assez vite compris que les discours alarmistes grossissaient le trait. Claude peut en effet créer de très beaux sites, des landing pages propres et bien construites. J'en ai moi-même fait l'expérience en créant <a href="work.html" class="article-link">une landing page from scratch</a>, et le résultat était solide.<br><br>Mais on se rend très vite compte que lorsqu'on rentre dans un travail plus complexe, un site avec un vrai CMS, une architecture SEO travaillée, un système de contenu qui doit tenir dans la durée, les limites apparaissent. Les premières versions produites sans direction précise tombent dans ce qu'on appelle l'"AI slop" : techniquement propre, mais très générique, sans cohérence de marque, sans intention visible.<br><br>Ce que j'ai compris à ce stade, c'est qu'utiliser Claude Code comme un générateur automatique de sites est une très mauvaise façon de l'aborder. Bien managé, avec un brief précis, il génère une première version correcte. Cette version doit ensuite passer dans un outil d'édition visuel comme Webflow pour être retravaillée composant par composant, jusqu'à effacer l'effet générique et obtenir quelque chose de propre, cohérent et professionnel. Il élimine la page blanche, accélère les phases d'exploration, et libère de l'espace pour se concentrer sur ce qui demande un vrai jugement : les choix de design, la cohérence du message, la qualité finale. J'ai donc intégré Claude Code dans mon workflow pour ces raisons.</span>
+              <span class="lang-en">When generative AI started going mainstream, it first felt like background noise. Then the noise became overwhelming. LinkedIn feeds filled with catastrophist posts, YouTube channels ran headlines about the end of web design, agencies closing, freelancers disappearing.<br><br>I was in the middle of building an activity around website creation. The question of changing direction came up, and I'm not going to pretend it didn't. For a while, I wasn't sure what I was building still made sense. What pulled me out of that was deciding to test things rather than believe the headlines. I looked into Claude Code, installed it to understand what it had under the hood, see what it was capable of. And I fell in, almost despite myself. I fairly quickly understood that the alarmist narratives were exaggerating. Claude can in fact create genuinely beautiful sites, clean and well-structured landing pages. I experienced it myself by building <a href="work.html" class="article-link">one from scratch</a>, and the result was solid.<br><br>But you realise very quickly that when you get into something more complex, a site with a real CMS, a structured SEO architecture, a content system that needs to hold up over time, the limits show up. The first versions produced without precise direction fall into what's called "AI slop": technically clean, but very generic, without brand coherence, without visible intention.<br><br>What I understood at that point is that using Claude Code as an automatic site generator is entirely the wrong approach. Used properly, with a precise brief, it generates a first working version. That version then needs to go through a visual editing tool like Webflow, reworked component by component, until the generic effect is gone and what's left is clean, coherent, and professional. It eliminates the blank page, accelerates the exploration phase, and frees up space to focus on what requires real judgment: design choices, message coherence, final quality. I've therefore integrated Claude Code into my workflow for these reasons.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag"><span class="lang-fr">Parcours</span><span class="lang-en">Journey</span></span>
+        </article>
+
+        <!-- Article 2 — Formation + micro-entreprise -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">J'ai vendu mon premier site avant d'avoir mon diplôme</span>
+            <span class="lang-en">I sold my first site before I graduated</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">Attirée par le code autant que par le design, je me suis orientée vers un master data science en école de commerce. Statistiques, SQL, Python, Power BI, analyse : des années à apprendre à lire les données avec rigueur et méthode. Mais quelque chose me manquait. J'aimais coder, j'aimais la logique derrière, seulement tout ça restait très théorique, très abstrait, et j'avais besoin de voir un résultat concret et visuel de ce que je construisais. Les sites web sont arrivés comme une évidence : un terrain où le code rencontre le design, où ce qu'on écrit prend une forme visible.<br><br>J'ai alors appris en autodidacte le HTML, le CSS et le JavaScript pour comprendre comment les sites étaient construits en profondeur. WordPress est venu dans la foulée : un outil no-code intuitif, des plugins pour tout, et un écosystème SEO déjà très complet. C'est lui qui m'a permis de créer rapidement mes premiers sites clients et de décrocher mes premiers contrats. C'est à cette même période que j'ai commencé à apprendre Figma, d'abord pour maîtriser l'outil, explorer ses méthodes, sans encore savoir exactement où ça allait me mener. Entre les examens et le rendu de thèse, j'ai livré mon premier site avant même d'avoir décroché mon diplôme.<br><br>Après ma thèse, j'ai pu aller plus loin. C'est là que j'ai découvert Webflow : un outil low-code pensé pour les designers, mais qui demande des mois à prendre en main entre les bonnes pratiques, le CMS, la logique de construction. En apprenant Webflow, j'ai aussi mesuré les limites de mes designs Figma de l'époque : j'avais fait au mieux, mais sans connaître l'outil de destination, certains choix rendaient l'intégration plus complexe. C'est cet écart qui m'a appris à créer avec une vision esthétique tout en respectant les contraintes du développement.</span>
+              <span class="lang-en">Drawn to code as much as design, I went into a data science master's at business school. Statistics, SQL, Python, Power BI, analysis: years of learning to read data with rigour and method. But something was missing. I loved coding, I loved the logic behind it, only all of that stayed very theoretical, very abstract, and I needed to see a concrete, visual result of what I was building. Websites arrived as the obvious answer: a space where code meets design, where what you write takes a visible form.<br><br>I then taught myself HTML, CSS, and JavaScript to understand how sites were built at a deeper level. WordPress came right after: an intuitive no-code tool, plugins for everything, and an already very complete SEO ecosystem. It's what allowed me to create my first client sites quickly and land my first contracts. It was during that same period that I started learning Figma, at first just to master the tool, explore its methods, without quite knowing where it would take me. Between exams and submitting my thesis, I delivered my first site before I'd even graduated.<br><br>After finishing my thesis, I was able to go further. That's when I discovered Webflow: a low-code tool built for designers, but one that takes months to get right between best practices, the CMS, the build logic. Learning Webflow also showed me the limits of my Figma designs from that period: I'd done my best, but without knowing the destination tool, some choices made the integration more complex. That gap is what taught me to create with an aesthetic vision while keeping the development constraints in mind.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag"><span class="lang-fr">Parcours</span><span class="lang-en">Journey</span></span>
+        </article>
+
+        <!-- Article 3 — Six sites WordPress -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">J'ai appris le web design site après site.</span>
+            <span class="lang-en">I learned web design one site at a time.</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">J'ai commencé WordPress en parallèle de mes études, avec des tutoriels YouTube, des forums anglais, beaucoup d'essais-erreurs. Créer des sites, c'était ce qui réunissait les deux choses que j'aimais : le code et le design.<br><br>Dès le début, j'ai compris qu'on ne fait pas un site pour la beauté du site. On le fait pour être trouvé sur Google, amener des visiteurs, <strong style="color:var(--accent)">convertir</strong>. La visibilité prime sur tout le reste. Au-delà des designs appréciables, j'ai énormément travaillé sur ce qu'on ne voit pas : le SEO technique et éditorial, les performances, le maillage interne. J'ai vu concrètement comment chaque optimisation se traduit en résultats dans la Search Console. Ma formation en data science était un véritable atout : en data, l'objectif est toujours le même, améliorer une performance, optimiser un résultat. Je m'en suis servie pleinement ici.<br><br>Je n'ai jamais suivi de cours de web design. J'ai appris sur le terrain, en construisant, en cassant des choses, en reprenant depuis le début. C'est ce chemin-là qui m'a permis de créer mes propres process : un mode de travail, une organisation, un workflow qui m'appartiennent. Ça a pris du temps, mais aujourd'hui je sais exactement ce qu'il faut faire et ce qu'il faut éviter.</span>
+              <span class="lang-en">I started with WordPress alongside my studies: YouTube tutorials, English-language forums, a lot of trial and error. Building sites was what brought together the two things I loved: code and design.<br><br>From the beginning, I understood that you don't build a site for the beauty of the site. You build it to be found on Google, to bring in visitors, to <strong style="color:var(--accent)">convert</strong>. Visibility comes first. Beyond creating something worth looking at, I spent a lot of time working on what you don't see: technical and editorial SEO, performance, internal linking. I saw concretely how each optimisation translates into results in the Search Console. My data science training was a genuine asset: in data, the goal is always the same, improve a performance, optimise a result. I put that fully to work here.<br><br>I never took a web design course. I learned in the field, by building, breaking things, starting over. That's the path that let me build my own processes: a way of working, an organisation, a workflow that belongs to me. It took time, but today I know exactly what needs to be done and what needs to be avoided.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag">WordPress</span>
+        </article>
+
+        <!-- Article 4 — WebBuilder Studio -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">J'ai coupé Figma et Webflow. WebBuilder Studio est né là.</span>
+            <span class="lang-en">I cut Figma and Webflow. WebBuilder Studio was born from that.</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">Les difficultés financières m'ont amenée à rationner mes outils de création. Figma et Webflow se sont arrêtés en même temps : plus d'outil de conception, plus d'outil d'intégration visuelle, et un workflow à réinventer de zéro. J'ai cherché une alternative pour continuer à travailler. C'est là que j'ai découvert GrapesJS, un moteur d'éditeur visuel open source, entièrement gratuit, que je pouvais faire tourner directement dans VS Code. J'en ai fait un outil sur mesure : WebBuilder Studio. Ce n'était pas tout à fait dans mes plans. Mais construire un outil complexe à partir d'une contrainte m'a beaucoup appris. Il y a quelque chose de particulier dans le fait de devoir comprendre chaque composant assez profondément pour le construire à partir de rien, plutôt que de se contenter de le paramétrer. WebBuilder Studio est devenu à la fois un outil de travail, un laboratoire et un projet en soi. Aujourd'hui il fait tourner un éditeur visuel complet dans VS Code : bibliothèque de blocs, panneau de styles, export HTML propre. C'est un outil complètement fonctionnel. Il est taillé sur mesure pour mon workflow. Il n'a pas vocation à devenir un produit.<br><br>Le code qu'il y a dessous n'est pas encore tout à fait ce qu'il devrait être, et je le sais. Je construis quelque chose de complexe dans un domaine qui n'est pas le mien au départ. Au même titre que ma formation autodidacte sur les sites WordPress, le codage HTML, CSS, JavaScript, Figma et Webflow, j'apprends en faisant des erreurs, je les corrige et je recommence. C'est pour ça que je le vois comme un « bac à sable » autant que comme un outil de travail : il m'apprend les bonnes pratiques, la logique d'un code propre qui tient dans le temps. C'est un travail de longue haleine, mais c'est extrêmement formateur.<br><br>Il fait figure d'exception dans mon parcours professionnel. Dans ma page Mes projets, j'ai choisi de ne pas le présenter : cette page est faite pour les sites que j'ai créés ou designés, et WebBuilder Studio sort complètement du lot. J'ai donc choisi d'en parler ici, dans le journal, et dans ma page d'accueil où je décris mon workflow. Il fait partie de mon quotidien. J'ai beaucoup d'ambition pour ce projet. Il fera l'objet d'autres articles à l'avenir, autant sur les nouvelles features et les améliorations continues que sur ce qu'il m'apporte en temps gagné et en travail accompli.</span>
+              <span class="lang-en">Financial difficulties pushed me to ration my creation tools. Figma and Webflow stopped at the same time: no more design tool, no more visual integration tool, and a workflow to reinvent from scratch. I looked for an alternative to keep working. That's when I discovered GrapesJS, an open source visual editor engine, completely free, that I could run directly in VS Code. I turned it into a bespoke tool: WebBuilder Studio. It wasn't quite in the plan. But building a complex tool out of a constraint taught me a lot. There's something particular about having to understand each component deeply enough to build it from nothing, rather than just configuring it. WebBuilder Studio became a work tool, a lab and a project in its own right. Today it runs a full visual editor inside VS Code: block library, style panel, clean HTML export. It's a fully functional tool. It's tailored to my workflow. It's not meant to become a product.<br><br>The code underneath isn't quite what it should be yet, and I know it. I'm building something complex in a domain that isn't mine to begin with. Just like my self-taught learning across WordPress sites, HTML, CSS, JavaScript, Figma and Webflow, I learn by making mistakes, correcting them and starting over. That's why I see it as a "sandbox" as much as a work tool: it teaches me good practices, the logic of clean code that holds up over time. It's a long-haul project, but an incredibly formative one.<br><br>It stands out as an exception in my professional journey. In my Work page, I chose not to include it: that page is for the sites I've built or designed, and WebBuilder Studio is something else entirely. So I chose to talk about it here, in the journal, and on my homepage where I describe my workflow. It's part of my daily life. I have big ambitions for this project. It will be the subject of future articles, both on the new features I add and the ongoing improvements, and on what it brings me in time saved and work done.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag">WebBuilder Studio</span>
+        </article>
+
+        <!-- Article 5 — Aujourd'hui -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">Aujourd'hui : remettre tout ça en ordre</span>
+            <span class="lang-en">Today: putting it all in order</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">En ce moment, je construis ce portfolio. C'est la première fois que je rassemble dans un seul endroit tout ce que j'ai fait : les projets Web3 restés dans des fichiers Figma, les sites WordPress pour lesquels j'avais été payée mais qui n'apparaissaient nulle part dans mon profil, WebBuilder Studio qui existait dans mon VS Code mais pas encore sur GitHub. Mettre ça en ordre m'a forcée à regarder franchement ce que je sais faire, ce qui me manque encore, et où je veux aller.<br><br>La prochaine étape concrète : pousser WebBuilder Studio sur GitHub. Pour que le projet existe vraiment, pas juste dans mon environnement local.<br><br>Après ça, continuer à construire. Des clients, des projets, des compétences. Je suis disponible pour du freelance ou un emploi remote en web et design. Ce portfolio n'est pas encore fini. Aucun bon portfolio ne l'est jamais vraiment.</span>
+              <span class="lang-en">Right now, I'm building this portfolio. It's the first time I've gathered everything I've done into one place: the Web3 projects that stayed in Figma files, the WordPress sites I'd been paid for but that didn't appear anywhere in my profile, WebBuilder Studio that existed in my VS Code but not yet on GitHub. Pulling all of this together forced me to look honestly at what I know how to do, what I still lack, and where I want to go.<br><br>The next concrete step: pushing WebBuilder Studio to GitHub. For the project to actually exist, not just in my local environment.<br><br>After that, keep building. Clients, projects, skills. I'm available for freelance work or a remote position in web and design. This portfolio isn't finished yet. No good portfolio ever really is.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag"><span class="lang-fr">Aujourd'hui</span><span class="lang-en">Today</span></span>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-name">Oriane NYIKEINE</p>
+      <div class="footer-links">
+        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">nyikeineoriane@gmail.com</a>
+        <a href="https://github.com/oriane-nyikeine" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      </div>
+      <p class="footer-copy">© 2026 Oriane NYIKEINE</p>
+    </div>
+  </footer>
+
+  <script>
+// ===== THÈME LIGHT / DARK =====
+const html        = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+
+const savedTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', savedTheme);
+
+themeToggle?.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+// ===== LANGUE FR / EN =====
+const langToggle = document.getElementById('langToggle');
+
+const savedLang = localStorage.getItem('lang') || 'fr';
+html.setAttribute('data-lang', savedLang);
+if (langToggle) langToggle.textContent = savedLang === 'fr' ? 'EN' : 'FR';
+
+langToggle?.addEventListener('click', () => {
+  const next = html.getAttribute('data-lang') === 'fr' ? 'en' : 'fr';
+  html.setAttribute('data-lang', next);
+  localStorage.setItem('lang', next);
+  langToggle.textContent = next === 'fr' ? 'EN' : 'FR';
+});
+
+// ===== CANVAS DE FOND GLOBAL =====
+(function () {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  let accentRgb = '124,58,237';
+
+  function updateColor() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    accentRgb = dark ? '167,139,250' : '124,58,237';
+  }
+
+  new MutationObserver(updateColor).observe(
+    document.documentElement,
+    { attributes: true, attributeFilter: ['data-theme'] }
+  );
+  updateColor();
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x       = Math.random() * W;
+      this.y       = init ? Math.random() * H : H + 10;
+      this.r       = Math.random() * 1.6 + 0.4;
+      this.speed   = Math.random() * 0.28 + 0.06;
+      this.opacity = Math.random() * 0.32 + 0.06;
+      this.drift   = (Math.random() - 0.5) * 0.18;
+    }
+    update() {
+      this.y -= this.speed;
+      this.x += this.drift;
+      if (this.y < -10) this.reset(false);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${accentRgb},${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  particles = Array.from({ length: 100 }, () => new Particle());
+  animate();
+  window.addEventListener('resize', resize);
+})();
+
+// ===== SCROLL HORIZONTAL PILOTÉ PAR LA SOURIS =====
+(function () {
+  const wrap  = document.getElementById('hscrollWrap');
+  const track = document.getElementById('hscrollTrack');
+  if (!wrap || !track) return;
+
+  let target = 0;
+  let current = 0;
+  let raf = null;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  wrap.addEventListener('mousemove', (e) => {
+    const rect     = wrap.getBoundingClientRect();
+    const ratio    = (e.clientX - rect.left) / rect.width;          // 0 → 1
+    const maxShift = track.scrollWidth - wrap.clientWidth;
+    target = ratio * maxShift;
+  });
+
+  wrap.addEventListener('mouseleave', () => {
+    // Garder la position actuelle à la sortie
+    target = current;
+  });
+
+  function animate() {
+    current = lerp(current, target, 0.07);
+    track.style.transform = `translateX(-${current}px)`;
+    raf = requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ===== PARTICULES — SECTION ABOUT =====
+(function () {
+  const canvas = document.getElementById('aboutCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x       = Math.random() * W;
+      this.y       = init ? Math.random() * H : H + 6;
+      this.r       = Math.random() * 1.4 + 0.3;
+      this.speed   = Math.random() * 0.28 + 0.06;
+      this.opacity = Math.random() * 0.22 + 0.04;
+      this.drift   = (Math.random() - 0.5) * 0.18;
+    }
+    update() {
+      this.y -= this.speed;
+      this.x += this.drift;
+      if (this.y < -6) this.reset(false);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(124,58,237,${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  particles = Array.from({ length: 55 }, () => new Particle());
+  animate();
+  window.addEventListener('resize', resize);
+})();
+
+// ===== BARRES SKILLS — SECTION ABOUT =====
+(function () {
+  const fills = document.querySelectorAll('.skill-viz-fill');
+  if (!fills.length) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        setTimeout(() => { el.style.width = el.dataset.width + '%'; }, 150);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  fills.forEach(f => obs.observe(f));
+})();
+
+// ===== SCROLL-DRIVEN — WEBBUILDER STUDIO =====
+(function () {
+  const section = document.getElementById('wbsSection');
+  const visual  = document.getElementById('wbsVisual');
+  const img     = document.getElementById('wbsImg');
+  const text    = document.getElementById('wbsText');
+  if (!section || !visual || !img || !text) return;
+
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  function update() {
+    if (window.innerWidth <= 768) {
+      visual.style.width        = '';
+      visual.style.marginLeft   = '';
+      visual.style.height       = '';
+      visual.style.borderRadius = '';
+      img.style.transform       = '';
+      text.style.transform      = '';
+      return;
+    }
+
+    const scrolled  = Math.max(0, -section.getBoundingClientRect().top);
+    const maxScroll = section.offsetHeight - window.innerHeight;
+    const progress  = Math.min(1, scrolled / maxScroll);
+    const vw = document.documentElement.clientWidth;
+    const vh = window.innerHeight;
+
+    // Phase 1 (0 → 0.40) : image rétrécit de 90 % à 50 %, centrée
+    const p1 = ease(Math.max(0, Math.min(1, progress / 0.40)));
+    const w  = vw * (0.9 - 0.4 * p1);
+    visual.style.width        = w + 'px';
+    visual.style.marginLeft   = ((vw - w) / 2) + 'px';
+    visual.style.height       = (vh * (0.9 - 0.4 * p1)) + 'px';
+    visual.style.borderRadius = (p1 * 18) + 'px';
+    img.style.transform       = '';
+
+    // Phase 2 (0.50 → 0.88) : texte monte sur l'image
+    const p2    = ease(Math.max(0, Math.min(1, (progress - 0.50) / 0.38)));
+    const textY = 120 - p2 * 230;
+    text.style.transform = `translateY(${Math.max(-110, textY)}px)`;
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ===== JOURNAL — EXPAND / COLLAPSE =====
+document.querySelectorAll('.article-toggle, .article-title').forEach(el => {
+  el.addEventListener('click', () => {
+    const card = el.closest('.article-card');
+    const body = card.querySelector('.article-body');
+    const isExpanded = card.classList.toggle('expanded');
+    body.style.maxHeight = isExpanded ? body.scrollHeight + 'px' : '';
+  });
+});
+
+// ===== LIEN ACTIF DANS LA NAV =====
+const page = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav-link').forEach(link => {
+  const href = link.getAttribute('href');
+  const isActive = href === page || (page === '' && href === 'index.html');
+  link.classList.toggle('active', isActive);
+});
+
+  </script>
+</body>
+</html>

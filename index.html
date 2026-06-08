@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav">
@@ -15,8 +16,8 @@
     <ul class="nav-links">
       <li>
         <a href="index.html" class="nav-link active">
-          <span class="lang-fr">À propos</span>
-          <span class="lang-en">About</span>
+          <span class="lang-fr">Accueil</span>
+          <span class="lang-en">Home</span>
         </a>
       </li>
       <li>
@@ -53,13 +54,13 @@
       <h1 class="hero-name">Oriane <span class="accent">NYIKEINE</span></h1>
 
       <p class="hero-title">
-        <span class="lang-fr">Développeuse Web augmentée à l'IA</span>
-        <span class="lang-en">AI-augmented Web Developer</span>
+        <span class="lang-fr">Développeuse web freelance</span>
+        <span class="lang-en">Freelance web developer</span>
       </p>
 
       <p class="hero-desc">
-        <span class="lang-fr">Je construis des interfaces web soignées, en combinant code et outils IA pour apprendre plus vite et créer mieux.</span>
-        <span class="lang-en">I build refined web interfaces, combining code and AI tools to learn faster and build better.</span>
+        <span class="lang-fr">Je conçois et développe des sites en combinant la créativité de <span class="accent">Webflow</span> avec la puissance de <span class="accent">Claude Code</span> pour livrer avec vitesse et efficacité. Disponible en remote.</span>
+        <span class="lang-en">I design and build websites by combining the creativity of <span class="accent">Webflow</span> with the power of <span class="accent">Claude Code</span> to deliver with speed and efficiency. Available remote.</span>
       </p>
 
       <div class="hero-cta">
@@ -77,44 +78,221 @@
     <div class="hero-visual">
       <div class="hero-blob"></div>
       <div class="hero-photo-frame">
-        <img src="photo.jpg" alt="Oriane NYIKEINE" class="hero-photo">
+        <img src="photo.jpeg" alt="Oriane NYIKEINE" class="hero-photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCROLL PROJETS ===== -->
+  <section class="hscroll-section">
+    <div class="hscroll-track-wrap" id="hscrollWrap">
+      <div class="hscroll-track" id="hscrollTrack">
+
+        <a href="work.html#les-rh-au-naturel" class="hscroll-card">
+          <div class="hscroll-img" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7)">
+            <img src="thumb-rh.jpeg" alt="Les RH au naturel" onerror="this.style.display='none'">
+          </div>
+          <div class="hscroll-label">
+            <p>Les RH au naturel</p>
+            <div class="hscroll-tags"><span class="project-tag">WordPress</span><span class="project-tag">Instagram</span></div>
+          </div>
+        </a>
+
+        <a href="work.html#horizon-media" class="hscroll-card">
+          <div class="hscroll-img" style="background:linear-gradient(135deg,#dbeafe,#93c5fd)">
+            <img src="thumb-horizon.jpeg" alt="Horizon Media" onerror="this.style.display='none'">
+          </div>
+          <div class="hscroll-label">
+            <p>Horizon Media</p>
+            <div class="hscroll-tags"><span class="project-tag">WordPress</span></div>
+          </div>
+        </a>
+
+        <a href="work.html#ai-noobies" class="hscroll-card">
+          <div class="hscroll-img" style="background:linear-gradient(135deg,#fee2e2,#fca5a5)">
+            <img src="thumb-noobies.jpeg" alt="AI Noobies" onerror="this.style.display='none'">
+          </div>
+          <div class="hscroll-label">
+            <p>AI Noobies</p>
+            <div class="hscroll-tags"><span class="project-tag">WordPress</span></div>
+          </div>
+        </a>
+
+        <a href="work.html#cfinance" class="hscroll-card">
+          <div class="hscroll-img" style="background:linear-gradient(135deg,#e0f2fe,#7dd3fc)">
+            <img src="thumb-cfinance.jpeg" alt="C Finance Media" onerror="this.style.display='none'">
+          </div>
+          <div class="hscroll-label">
+            <p>C Finance Media</p>
+            <div class="hscroll-tags"><span class="project-tag">WordPress</span></div>
+          </div>
+        </a>
+
+        <a href="work.html#save-your-job" class="hscroll-card">
+          <div class="hscroll-img" style="background:linear-gradient(135deg,#fef3c7,#fcd34d)">
+            <img src="thumb-syjai.jpeg" alt="Save Your Job From AI" onerror="this.style.display='none'">
+          </div>
+          <div class="hscroll-label">
+            <p>Save Your Job From AI</p>
+            <div class="hscroll-tags"><span class="project-tag">WordPress</span></div>
+          </div>
+        </a>
+
+        <a href="work.html#landing-page" class="hscroll-card">
+          <div class="hscroll-img" style="background:linear-gradient(135deg,#f3e8ff,#d8b4fe)">
+            <img src="thumb-landing.jpeg" alt="Save Your Job Landing Page" onerror="this.style.display='none'">
+          </div>
+          <div class="hscroll-label">
+            <p>Save Your Job — LP</p>
+            <div class="hscroll-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
 
   <!-- ===== SECTION À PROPOS ===== -->
   <section class="about" id="about">
+    <canvas class="about-canvas" id="aboutCanvas"></canvas>
     <div class="container">
-      <h2 class="section-title">
-        <span class="lang-fr">À propos de moi</span>
-        <span class="lang-en">About Me</span>
-      </h2>
 
+      <!-- Ligne 1 : Texte gauche | Skills droite -->
       <div class="about-grid">
+
+        <!-- ── Texte gauche ── -->
         <div class="about-text">
+          <h2 class="section-title" style="margin-bottom:1.75rem">
+            <span class="lang-fr">À propos de moi</span>
+            <span class="lang-en">About Me</span>
+          </h2>
           <p>
-            <span class="lang-fr">Je suis une développeuse web en formation active, passionnée par la création d'expériences numériques qui allient design soigné et code fonctionnel. J'utilise les outils IA comme des accélérateurs — pour apprendre plus vite, itérer plus souvent, et construire mieux.</span>
-            <span class="lang-en">I'm an actively learning web developer, passionate about building digital experiences that blend thoughtful design with functional code. I use AI tools as accelerators — to learn faster, iterate more, and build better.</span>
+            <span class="lang-fr">Attirée par le code autant que par le design, je me suis orientée vers un master data science en école de commerce. Ce que j'aimais dans le code, c'était voir un résultat visuel et esthétique de ce que je construisais. Cette combinaison m'a menée vers la création de sites, appris en autodidacte, du no-code (WordPress) au low-code (Webflow) jusqu'au code pur (HTML, CSS, JavaScript). L'arrivée des IA a failli me faire douter de ces années d'apprentissage. J'ai choisi de les considérer autrement : non pas comme une menace, mais comme un super outil pour aller plus vite, plus loin et faire encore mieux.</span>
+            <span class="lang-en">Drawn to both code and design, I chose a data science master's at business school. What I loved about coding was seeing the visual and aesthetic result of what I was building. That combination led me to web creation, self-taught, from no-code (WordPress) to low-code (Webflow) through to pure code (HTML, CSS, JavaScript). The arrival of AI nearly made me question those years of learning. I chose to see it differently: not as a threat, but as a powerful tool to go faster, further and do even better.</span>
           </p>
-          <p>
-            <span class="lang-fr">Ce portfolio grandit avec moi. Il témoigne de ma progression, de mes projets, et de ma curiosité permanente pour le web et ses possibilités.</span>
-            <span class="lang-en">This portfolio grows with me. It reflects my progress, my projects, and my ongoing curiosity for the web and its possibilities.</span>
-          </p>
+          <a href="journal.html" class="btn btn-ghost" style="margin-top:1.5rem;display:inline-flex">
+            <span class="lang-fr">En lire davantage</span>
+            <span class="lang-en">Read more</span>
+          </a>
         </div>
 
-        <div class="about-skills">
-          <p class="skills-label">
-            <span class="lang-fr">Compétences</span>
-            <span class="lang-en">Skills</span>
-          </p>
-          <div class="skills-grid">
-            <span class="skill-tag">HTML / CSS</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Webflow</span>
-            <span class="skill-tag">No-code</span>
-            <span class="skill-tag">IA Tools</span>
+        <!-- ── Skills droite ── -->
+        <div class="about-skills-viz">
+          <div class="skills-piste-header">
+            <h3 class="skills-piste-title" style="font-size:1.75rem">Web &amp; Design</h3>
+          </div>
+
+          <div class="skills-group-label">
+            <span class="lang-fr">Création web</span>
+            <span class="lang-en">Web creation</span>
+          </div>
+
+          <div class="skill-viz-item">
+            <div class="skill-viz-meta">
+              <span class="skill-viz-name">WordPress + Maintenance</span>
+              <span class="skill-viz-level"><span class="lang-fr">Avancé</span><span class="lang-en">Advanced</span></span>
+            </div>
+            <div class="skill-viz-track"><div class="skill-viz-fill" data-width="88"></div></div>
+          </div>
+
+          <div class="skill-viz-item">
+            <div class="skill-viz-meta">
+              <span class="skill-viz-name">HTML / CSS + JS</span>
+              <span class="skill-viz-level"><span class="lang-fr">Avancé</span><span class="lang-en">Advanced</span></span>
+            </div>
+            <div class="skill-viz-track"><div class="skill-viz-fill" data-width="84"></div></div>
+          </div>
+
+          <div class="skill-viz-item">
+            <div class="skill-viz-meta">
+              <span class="skill-viz-name">Webflow</span>
+              <span class="skill-viz-level"><span class="lang-fr">Solide</span><span class="lang-en">Solid</span></span>
+            </div>
+            <div class="skill-viz-track"><div class="skill-viz-fill" data-width="72"></div></div>
+          </div>
+
+          <div class="skills-group-label">Design</div>
+
+          <div class="skill-viz-item">
+            <div class="skill-viz-meta">
+              <span class="skill-viz-name">Figma (UI/UX)</span>
+              <span class="skill-viz-level"><span class="lang-fr">Solide</span><span class="lang-en">Solid</span></span>
+            </div>
+            <div class="skill-viz-track"><div class="skill-viz-fill" data-width="75"></div></div>
           </div>
         </div>
+
+      </div>
+
+      <!-- Ligne 2 : 3 cartes pleine largeur -->
+      <div class="skills-bottom-strip" style="margin-top:3rem">
+        <div class="skills-strip-card">
+          <h4><span class="lang-fr">Langues</span><span class="lang-en">Languages</span></h4>
+          <div class="strip-lang-item">
+            <span><span class="lang-fr">Français</span><span class="lang-en">French</span></span>
+            <span class="strip-lang-badge"><span class="lang-fr">Natif</span><span class="lang-en">Native</span></span>
+          </div>
+          <div class="strip-lang-item">
+            <span><span class="lang-fr">Anglais</span><span class="lang-en">English</span></span>
+            <span class="strip-lang-badge">B2</span>
+          </div>
+        </div>
+
+        <div class="skills-strip-card">
+          <h4>Soft Skills</h4>
+          <div class="strip-soft-item"><span class="lang-fr">Autonomie (remote)</span><span class="lang-en">Self-driven (remote)</span></div>
+          <div class="strip-soft-item"><span class="lang-fr">Rigueur</span><span class="lang-en">Attention to detail</span></div>
+          <div class="strip-soft-item"><span class="lang-fr">Adaptabilité</span><span class="lang-en">Adaptability</span></div>
+          <div class="strip-soft-item"><span class="lang-fr">Curiosité IA active</span><span class="lang-en">Active AI curiosity</span></div>
+        </div>
+
+        <div class="skills-strip-card">
+          <h4><span class="lang-fr">Expérience</span><span class="lang-en">Experience</span></h4>
+          <div class="strip-xp-item">
+            <strong><span class="lang-fr">Content manager + création de sites</span><span class="lang-en">Content manager + web creation</span></strong>
+            <div class="strip-xp-sub"><span class="lang-fr">Agence de communication · 1 an</span><span class="lang-en">Communication agency · 1 year</span></div>
+          </div>
+          <div class="strip-xp-item">
+            <strong><span class="lang-fr">Projets web clients</span><span class="lang-en">Client web projects</span></strong>
+            <div class="strip-xp-sub">WordPress · 6 sites</div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <!-- ===== WEBBUILDER STUDIO ===== -->
+  <section class="wbs-section" id="wbsSection">
+    <div class="wbs-pin">
+      <div class="container" style="width:100%;max-width:none;padding:0">
+
+        <div class="wbs-visual" id="wbsVisual">
+          <img src="webbuilder-screenshot.jpeg" alt="WebBuilder Studio" class="wbs-screenshot" id="wbsImg">
+        </div>
+
+        <div class="wbs-text" id="wbsText">
+          <div class="container">
+            <span class="wbs-label">Side project</span>
+            <h2 class="wbs-title">WebBuilder Studio</h2>
+            <p>
+              <span class="lang-fr">Quand Webflow est devenu financièrement inaccessible, j'ai cherché une alternative. J'ai alors trouvé GrapesJS, un moteur d'éditeur visuel open source que je pouvais faire tourner directement dans VS Code. J'en ai fait un outil sur mesure : WebBuilder Studio.</span>
+              <span class="lang-en">When Webflow became financially out of reach, I looked for an alternative. I found GrapesJS, an open source visual editor engine I could run directly in VS Code. I turned it into a bespoke tool: WebBuilder Studio.</span>
+            </p>
+            <p>
+              <span class="lang-fr">Mon process sur chaque site : je génère une première version avec Claude Code. Solide, mais générique. Je l'importe ensuite dans WebBuilder Studio et je retravaille composant par composant, jusqu'à avoir quelque chose de propre et cohérent.</span>
+              <span class="lang-en">My process on every site: I generate a first version with Claude Code. Solid, but generic. I then import it into WebBuilder Studio and rework it component by component, until I have something clean and coherent.</span>
+            </p>
+            <p>
+              <span class="lang-fr">WebBuilder Studio n'est pas seulement un outil de travail. C'est également un véritable « bac à sable », que je modèle à ma guise en y ajoutant les fonctionnalités qui me sont utiles. Il me permet, en plus de travailler sur des sites, d'apprendre à coder et à construire un outil complexe et solide.</span>
+              <span class="lang-en">WebBuilder Studio is not only a work tool. It is also a genuine sandbox, which I shape as I please by adding features that are useful to me. Beyond building sites, it allows me to learn to code and to build something complex and solid.</span>
+            </p>
+            <a href="https://github.com/oriane-nyikeine/webbuilder-studio" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:1.25rem;display:inline-flex">GitHub</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -124,8 +302,8 @@
     <div class="container">
       <p class="footer-name">Oriane NYIKEINE</p>
       <div class="footer-links">
-        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">Email</a>
-        <a href="#" class="footer-link" title="GitHub — bientôt disponible">GitHub</a>
+        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">nyikeineoriane@gmail.com</a>
+        <a href="https://github.com/oriane-nyikeine" target="_blank" rel="noopener" class="footer-link">GitHub</a>
       </div>
       <p class="footer-copy">© 2026 Oriane NYIKEINE</p>
     </div>

@@ -7,42 +7,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 
-  <!-- ===== NAVIGATION ===== -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">ON.</a>
-
     <ul class="nav-links">
-      <li>
-        <a href="index.html" class="nav-link">
-          <span class="lang-fr">À propos</span>
-          <span class="lang-en">About</span>
-        </a>
-      </li>
-      <li>
-        <a href="journal.html" class="nav-link">
-          <span class="lang-fr">Journal</span>
-          <span class="lang-en">Journal</span>
-        </a>
-      </li>
-      <li>
-        <a href="work.html" class="nav-link active">
-          <span class="lang-fr">Mes projets</span>
-          <span class="lang-en">My Work</span>
-        </a>
-      </li>
+      <li><a href="index.html" class="nav-link"><span class="lang-fr">Accueil</span><span class="lang-en">Home</span></a></li>
+      <li><a href="journal.html" class="nav-link"><span class="lang-fr">Journal</span><span class="lang-en">Journal</span></a></li>
+      <li><a href="work.html" class="nav-link active"><span class="lang-fr">Mes projets</span><span class="lang-en">My Work</span></a></li>
     </ul>
-
     <div class="nav-controls">
       <button class="btn-lang" id="langToggle" aria-label="Changer la langue">EN</button>
       <button class="btn-theme" id="themeToggle" aria-label="Changer le thème">
-        <span class="icon-sun">☀</span>
-        <span class="icon-moon">☽</span>
+        <span class="icon-sun">☀</span><span class="icon-moon">☽</span>
       </button>
     </div>
   </nav>
 
-  <!-- ===== EN-TÊTE ===== -->
   <header class="page-header">
     <div class="container">
       <h1 class="section-title">
@@ -50,135 +31,317 @@
         <span class="lang-en">My Work</span>
       </h1>
       <p class="page-subtitle">
-        <span class="lang-fr">Des projets réels, en cours, ou à venir. Ce portfolio grandit avec moi.</span>
-        <span class="lang-en">Real projects, in progress, or coming soon. This portfolio grows with me.</span>
+        <span class="lang-fr">Sites créés et gérés pour des clients et pour moi-même. WordPress, HTML/CSS, outils IA.</span>
+        <span class="lang-en">Websites built and managed for clients and myself. WordPress, HTML/CSS, AI tools.</span>
       </p>
     </div>
   </header>
 
-  <!-- ===== PROJETS ===== -->
   <main class="work-main">
     <div class="container">
-      <div class="work-grid">
 
-        <!-- Projet 1 — Portfolio -->
-        <article class="project-card">
-          <div class="project-thumb">
-            <div class="project-thumb-inner">
-              <span class="project-thumb-num">01</span>
-              <span class="project-thumb-label">Portfolio</span>
+      <!-- ── 01 · Les RH au naturel ── -->
+      <section class="project-section" id="les-rh-au-naturel">
+        <div class="project-layout">
+          <div class="project-visual" style="background: linear-gradient(135deg,#d1fae5,#6ee7b7)">
+            <img src="thumb-rh.jpeg" alt="Les RH au naturel" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">RH<br>O'Naturel</span>
+              <span class="placeholder-sub">WordPress</span>
             </div>
           </div>
-          <div class="project-body">
-            <h2 class="project-title">
-              <span class="lang-fr">Portfolio Personnel</span>
-              <span class="lang-en">Personal Portfolio</span>
-            </h2>
-            <p class="project-desc">
-              <span class="lang-fr">Ce site web. Conçu et codé from scratch en HTML/CSS/JS — avec mode sombre, toggle bilingue, et une identité visuelle pensée.</span>
-              <span class="lang-en">This very website. Designed and coded from scratch in HTML/CSS/JS — with dark mode, bilingual toggle, and a considered visual identity.</span>
+          <div class="project-info">
+            <span class="project-num">01 · WordPress</span>
+            <h2 class="project-name">Les RH au naturel</h2>
+            <p class="project-description">
+              <span class="lang-fr">Site vitrine pour une coach RH et bien-être, création complète sous WordPress. J'ai également assuré le content design de son compte Instagram — templates de posts et stories cohérents avec l'identité visuelle du site.</span>
+              <span class="lang-en">Showcase site for an HR and wellbeing coach, full WordPress creation. I also handled Instagram content design — post and story templates consistent with the site's visual identity.</span>
             </p>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Création WordPress + Content Design Instagram</span><span class="lang-en">WordPress creation + Instagram Content Design</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">WordPress, Figma, Canva</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">WordPress</span>
+              <span class="project-tag">Instagram</span>
+              <span class="project-tag">Content Design</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/les-rh-onaturel" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://www.lesrhonaturel.fr/" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 02 · Horizon Media ── -->
+      <section class="project-section" id="horizon-media">
+        <div class="project-layout reverse">
+          <div class="project-visual" style="background: linear-gradient(135deg,#dbeafe,#93c5fd)">
+            <img src="thumb-horizon.jpeg" alt="Horizon Media" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">Horizon<br>Media</span>
+              <span class="placeholder-sub">WordPress</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-num">02 · WordPress</span>
+            <h2 class="project-name">Horizon Media</h2>
+            <p class="project-description">
+              <span class="lang-fr">Plateforme média indépendante sous WordPress. Thème enfant custom basé sur Blogvi/Bloglo — personnalisation complète du design et gestion éditoriale.</span>
+              <span class="lang-en">Independent media platform on WordPress. Custom child theme based on Blogvi/Bloglo — full design customisation and editorial management.</span>
+            </p>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Développement thème enfant + gestion</span><span class="lang-en">Child theme dev + management</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">WordPress, Blogvi</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">WordPress</span>
+              <span class="project-tag"><span class="lang-fr">Thème enfant</span><span class="lang-en">Child theme</span></span>
+              <span class="project-tag">Média</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/horizon-media" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://www.horizonsmedia.fr/en/" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 03 · Save Your Job From AI ── -->
+      <section class="project-section" id="save-your-job">
+        <div class="project-layout">
+          <div class="project-visual" style="background: linear-gradient(135deg,#fef3c7,#fcd34d)">
+            <img src="thumb-syjai.jpeg" alt="Save Your Job From AI" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">Save<br>Your Job</span>
+              <span class="placeholder-sub">WordPress</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-num">03 · WordPress</span>
+            <h2 class="project-name">Save Your Job From AI</h2>
+            <p class="project-description">
+              <span class="lang-fr">Site WordPress pour aider les travailleurs à comprendre et s'adapter à l'IA dans leur métier. Contenu éditorial, structure du site, gestion complète.</span>
+              <span class="lang-en">WordPress site helping workers understand and adapt to AI in their field. Editorial content, site structure, full management.</span>
+            </p>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Création et gestion complète</span><span class="lang-en">Full creation and management</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">WordPress</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">WordPress</span>
+              <span class="project-tag">IA</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/save-your-job-from-ai" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://saveyourjobfromai.com/" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 04 · AI Noobies ── -->
+      <section class="project-section" id="ai-noobies">
+        <div class="project-layout reverse">
+          <div class="project-visual" style="background: linear-gradient(135deg,#fee2e2,#fca5a5)">
+            <img src="thumb-noobies.jpeg" alt="AI Noobies" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">AI<br>Noobies</span>
+              <span class="placeholder-sub">WordPress</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-num">04 · WordPress</span>
+            <h2 class="project-name">AI Noobies</h2>
+            <p class="project-description">
+              <span class="lang-fr">Site WordPress pour rendre l'IA accessible aux débutants. Guides pratiques, ressources en langage clair — pour ceux qui ne savent pas par où commencer.</span>
+              <span class="lang-en">WordPress site making AI accessible for beginners. Practical guides, plain language resources — for those who don't know where to start.</span>
+            </p>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Création et gestion complète</span><span class="lang-en">Full creation and management</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">WordPress</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">WordPress</span>
+              <span class="project-tag">IA</span>
+              <span class="project-tag"><span class="lang-fr">Éducation</span><span class="lang-en">Education</span></span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/ai-noobies" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://www.ainoobies.net/" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 05 · C Finance Media ── -->
+      <section class="project-section" id="cfinance">
+        <div class="project-layout">
+          <div class="project-visual" style="background: linear-gradient(135deg,#e0f2fe,#7dd3fc)">
+            <img src="thumb-cfinance.jpeg" alt="C Finance Media" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">C<br>Finance</span>
+              <span class="placeholder-sub">WordPress</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-num">05 · WordPress</span>
+            <h2 class="project-name">C Finance Media</h2>
+            <p class="project-description">
+              <span class="lang-fr">Plateforme WordPress dédiée aux finances personnelles et à l'actualité investissement. Création complète et gestion éditoriale.</span>
+              <span class="lang-en">WordPress platform covering personal finance and investment news. Full creation and editorial management.</span>
+            </p>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Création et gestion complète</span><span class="lang-en">Full creation and management</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">WordPress</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">WordPress</span>
+              <span class="project-tag">Finance</span>
+              <span class="project-tag">Média</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/cfinance-media" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://www.cfinancemedia.net/" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 06 · Save Your Job — Landing Page ── -->
+      <section class="project-section" id="landing-page">
+        <div class="project-layout reverse">
+          <div class="project-visual" style="background: linear-gradient(135deg,#f3e8ff,#d8b4fe)">
+            <img src="thumb-landing.jpeg" alt="Save Your Job Landing Page" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">Landing<br>Page</span>
+              <span class="placeholder-sub">HTML / CSS</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-num">06 · HTML / CSS</span>
+            <h2 class="project-name">Save Your Job — Landing Page</h2>
+            <p class="project-description">
+              <span class="lang-fr">Landing page codée from scratch en HTML/CSS pour la formation "Save Your Job From AI". Aucun framework, aucun CMS — juste du code propre.</span>
+              <span class="lang-en">Landing page coded from scratch in HTML/CSS for the "Save Your Job From AI" training. No framework, no CMS — just clean code.</span>
+            </p>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Développement front-end</span><span class="lang-en">Front-end development</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">HTML, CSS</span>
+              </div>
+            </div>
             <div class="project-tags">
               <span class="project-tag">HTML</span>
               <span class="project-tag">CSS</span>
-              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">Landing page</span>
             </div>
-            <div class="project-links">
-              <a href="#" class="project-link disabled">
-                <span class="lang-fr">GitHub</span>
-                <span class="lang-en">GitHub</span>
-              </a>
-              <a href="index.html" class="project-link">
-                <span class="lang-fr">Voir le site</span>
-                <span class="lang-en">Live site</span>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/save-your-job-learning" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://saveyourjobfromai.com/" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
               </a>
             </div>
           </div>
-        </article>
+        </div>
+      </section>
 
-        <!-- Projet 2 — Placeholder -->
-        <article class="project-card">
-          <div class="project-thumb">
-            <div class="project-thumb-inner">
-              <span class="project-thumb-num">02</span>
-              <span class="project-thumb-label">
-                <span class="lang-fr">En cours</span>
-                <span class="lang-en">In progress</span>
-              </span>
+      <!-- ── 07 · Sereinement Vin ── -->
+      <section class="project-section" id="sereinement-vin">
+        <div class="project-layout">
+          <div class="project-visual" style="background: linear-gradient(135deg,#fdf2f8,#f9a8d4)">
+            <img src="thumb-sereinementvin.jpeg" alt="Sereinement Vin" class="project-screenshot" onerror="this.style.display='none'">
+            <div class="project-visual-placeholder">
+              <span class="placeholder-logo">Sereinement<br>Vin</span>
+              <span class="placeholder-sub">WordPress</span>
             </div>
           </div>
-          <div class="project-body">
-            <h2 class="project-title">
-              <span class="lang-fr">Projet à venir</span>
-              <span class="lang-en">Coming Soon</span>
-            </h2>
-            <p class="project-desc">
-              <span class="lang-fr">Ce projet est en cours de construction. Revenez bientôt pour le découvrir.</span>
-              <span class="lang-en">This project is currently being built. Come back soon to discover it.</span>
+          <div class="project-info">
+            <span class="project-num">07 · WordPress</span>
+            <h2 class="project-name">Sereinement Vin</h2>
+            <p class="project-description">
+              <span class="lang-fr">Mission freelance sur le site d'une sommelière indépendante. Le site existait déjà — je suis intervenue pour améliorer le visuel, harmoniser le design sur l'ensemble des pages, et créer les nouvelles pages demandées par la cliente.</span>
+              <span class="lang-en">Freelance mission on an independent sommelier's existing site. I stepped in to improve the visuals, bring design consistency across all pages, and create the new pages requested by the client.</span>
             </p>
-            <div class="project-tags">
-              <span class="project-tag">
-                <span class="lang-fr">À définir</span>
-                <span class="lang-en">TBD</span>
-              </span>
+            <div class="project-meta">
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Rôle</span><span class="lang-en">Role</span></span>
+                <span class="meta-value"><span class="lang-fr">Refonte visuelle + création de pages</span><span class="lang-en">Visual redesign + page creation</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label"><span class="lang-fr">Outils</span><span class="lang-en">Tools</span></span>
+                <span class="meta-value">WordPress</span>
+              </div>
             </div>
-            <div class="project-links">
-              <a href="#" class="project-link disabled">GitHub</a>
-              <a href="#" class="project-link disabled">
-                <span class="lang-fr">Bientôt</span>
-                <span class="lang-en">Soon</span>
+            <div class="project-tags">
+              <span class="project-tag">WordPress</span>
+              <span class="project-tag"><span class="lang-fr">Refonte</span><span class="lang-en">Redesign</span></span>
+              <span class="project-tag">Freelance</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/oriane-nyikeine/sereinement-vin" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+              <a href="https://www.sereinementvin.com" target="_blank" rel="noopener" class="btn btn-ghost">
+                <span class="lang-fr">Voir le site</span><span class="lang-en">Visit site</span>
               </a>
             </div>
           </div>
-        </article>
+        </div>
+      </section>
 
-        <!-- Projet 3 — Placeholder -->
-        <article class="project-card">
-          <div class="project-thumb">
-            <div class="project-thumb-inner">
-              <span class="project-thumb-num">03</span>
-              <span class="project-thumb-label">
-                <span class="lang-fr">À venir</span>
-                <span class="lang-en">Coming Soon</span>
-              </span>
-            </div>
-          </div>
-          <div class="project-body">
-            <h2 class="project-title">
-              <span class="lang-fr">Projet à venir</span>
-              <span class="lang-en">Coming Soon</span>
-            </h2>
-            <p class="project-desc">
-              <span class="lang-fr">Un projet futur — l'espace est réservé, le travail commence bientôt.</span>
-              <span class="lang-en">A future project — the space is reserved, work starts soon.</span>
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">
-                <span class="lang-fr">À définir</span>
-                <span class="lang-en">TBD</span>
-              </span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link disabled">GitHub</a>
-              <a href="#" class="project-link disabled">
-                <span class="lang-fr">Bientôt</span>
-                <span class="lang-en">Soon</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-      </div>
     </div>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <p class="footer-name">Oriane NYIKEINE</p>
       <div class="footer-links">
-        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">Email</a>
-        <a href="#" class="footer-link" title="GitHub — bientôt disponible">GitHub</a>
+        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">nyikeineoriane@gmail.com</a>
+        <a href="https://github.com/oriane-nyikeine" target="_blank" rel="noopener" class="footer-link">GitHub</a>
       </div>
       <p class="footer-copy">© 2026 Oriane NYIKEINE</p>
     </div>

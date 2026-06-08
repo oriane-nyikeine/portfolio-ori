@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav">
@@ -15,8 +16,8 @@
     <ul class="nav-links">
       <li>
         <a href="index.html" class="nav-link">
-          <span class="lang-fr">À propos</span>
-          <span class="lang-en">About</span>
+          <span class="lang-fr">Accueil</span>
+          <span class="lang-en">Home</span>
         </a>
       </li>
       <li>
@@ -49,10 +50,6 @@
         <span class="lang-fr">Journal de bord</span>
         <span class="lang-en">Journal</span>
       </h1>
-      <p class="page-subtitle">
-        <span class="lang-fr">Ce que j'apprends, ce que je construis, ce que je découvre.</span>
-        <span class="lang-en">What I learn, what I build, what I discover.</span>
-      </p>
     </div>
   </header>
 
@@ -61,58 +58,109 @@
     <div class="container">
       <div class="journal-grid">
 
-        <!-- Article 1 -->
+        <!-- Article 1 — L'IA -->
         <article class="article-card">
-          <p class="article-date">
-            <span class="lang-fr">Mai 2026</span>
-            <span class="lang-en">May 2026</span>
-          </p>
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
           <h2 class="article-title">
-            <span class="lang-fr">Pourquoi j'ai choisi le développement web</span>
-            <span class="lang-en">Why I chose web development</span>
+            <span class="lang-fr">L'arrivée de l'IA a tout remis en question.</span>
+            <span class="lang-en">The arrival of AI put everything in question.</span>
           </h2>
-          <p class="article-excerpt">
-            <span class="lang-fr">Le web est partout, accessible à tous, et en constante évolution. C'est ce mélange entre créativité et logique qui m'a attirée — et ce que j'explore ici.</span>
-            <span class="lang-en">The web is everywhere, accessible to all, and constantly evolving. It's this blend of creativity and logic that drew me in — and what I explore here.</span>
-          </p>
-          <span class="article-tag">
-            <span class="lang-fr">Parcours</span>
-            <span class="lang-en">Journey</span>
-          </span>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">Quand l'IA générative a commencé à se démocratiser, ça a d'abord ressemblé à un bruit de fond. Puis le bruit est devenu assourdissant. Les fils LinkedIn se sont remplis de posts catastrophistes, les chaînes YouTube titraient sur la fin du web design, sur les agences qui allaient fermer, sur les freelances qui allaient disparaître.<br><br>J'étais en train de construire une activité autour de la création de sites. La question de me réorienter s'est posée, je ne vais pas prétendre le contraire. Pendant un moment, je n'étais pas sûre que ce que je construisais avait encore un sens. Ce qui m'en a sortie, c'est d'avoir décidé de tester plutôt que de croire les titres. Je me suis renseignée sur Claude Code, je l'ai installé pour comprendre ce qu'il avait dans le ventre, voir de quoi il était capable. Et je suis, un peu malgré moi, « tombée dans la marmite ». J'ai assez vite compris que les discours alarmistes grossissaient le trait. Claude peut en effet créer de très beaux sites, des landing pages propres et bien construites. J'en ai moi-même fait l'expérience en créant <a href="work.html" class="article-link">une landing page from scratch</a>, et le résultat était solide.<br><br>Mais on se rend très vite compte que lorsqu'on rentre dans un travail plus complexe, un site avec un vrai CMS, une architecture SEO travaillée, un système de contenu qui doit tenir dans la durée, les limites apparaissent. Les premières versions produites sans direction précise tombent dans ce qu'on appelle l'"AI slop" : techniquement propre, mais très générique, sans cohérence de marque, sans intention visible.<br><br>Ce que j'ai compris à ce stade, c'est qu'utiliser Claude Code comme un générateur automatique de sites est une très mauvaise façon de l'aborder. Bien managé, avec un brief précis, il génère une première version correcte. Cette version doit ensuite passer dans un outil d'édition visuel comme Webflow pour être retravaillée composant par composant, jusqu'à effacer l'effet générique et obtenir quelque chose de propre, cohérent et professionnel. Il élimine la page blanche, accélère les phases d'exploration, et libère de l'espace pour se concentrer sur ce qui demande un vrai jugement : les choix de design, la cohérence du message, la qualité finale. J'ai donc intégré Claude Code dans mon workflow pour ces raisons.</span>
+              <span class="lang-en">When generative AI started going mainstream, it first felt like background noise. Then the noise became overwhelming. LinkedIn feeds filled with catastrophist posts, YouTube channels ran headlines about the end of web design, agencies closing, freelancers disappearing.<br><br>I was in the middle of building an activity around website creation. The question of changing direction came up, and I'm not going to pretend it didn't. For a while, I wasn't sure what I was building still made sense. What pulled me out of that was deciding to test things rather than believe the headlines. I looked into Claude Code, installed it to understand what it had under the hood, see what it was capable of. And I fell in, almost despite myself. I fairly quickly understood that the alarmist narratives were exaggerating. Claude can in fact create genuinely beautiful sites, clean and well-structured landing pages. I experienced it myself by building <a href="work.html" class="article-link">one from scratch</a>, and the result was solid.<br><br>But you realise very quickly that when you get into something more complex, a site with a real CMS, a structured SEO architecture, a content system that needs to hold up over time, the limits show up. The first versions produced without precise direction fall into what's called "AI slop": technically clean, but very generic, without brand coherence, without visible intention.<br><br>What I understood at that point is that using Claude Code as an automatic site generator is entirely the wrong approach. Used properly, with a precise brief, it generates a first working version. That version then needs to go through a visual editing tool like Webflow, reworked component by component, until the generic effect is gone and what's left is clean, coherent, and professional. It eliminates the blank page, accelerates the exploration phase, and frees up space to focus on what requires real judgment: design choices, message coherence, final quality. I've therefore integrated Claude Code into my workflow for these reasons.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag"><span class="lang-fr">Parcours</span><span class="lang-en">Journey</span></span>
         </article>
 
-        <!-- Article 2 -->
+        <!-- Article 2 — Formation + micro-entreprise -->
         <article class="article-card">
-          <p class="article-date">
-            <span class="lang-fr">Mai 2026</span>
-            <span class="lang-en">May 2026</span>
-          </p>
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
           <h2 class="article-title">
-            <span class="lang-fr">Mon premier portfolio en HTML/CSS</span>
-            <span class="lang-en">My first portfolio in HTML/CSS</span>
+            <span class="lang-fr">J'ai vendu mon premier site avant d'avoir mon diplôme</span>
+            <span class="lang-en">I sold my first site before I graduated</span>
           </h2>
-          <p class="article-excerpt">
-            <span class="lang-fr">Construire ce site m'a appris plus que n'importe quel cours : la vraie différence entre écrire du code et concevoir une interface.</span>
-            <span class="lang-en">Building this site taught me more than any course: the real difference between writing code and designing an interface.</span>
-          </p>
-          <span class="article-tag">Code</span>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">Attirée par le code autant que par le design, je me suis orientée vers un master data science en école de commerce. Statistiques, SQL, Python, Power BI, analyse : des années à apprendre à lire les données avec rigueur et méthode. Mais quelque chose me manquait. J'aimais coder, j'aimais la logique derrière, seulement tout ça restait très théorique, très abstrait, et j'avais besoin de voir un résultat concret et visuel de ce que je construisais. Les sites web sont arrivés comme une évidence : un terrain où le code rencontre le design, où ce qu'on écrit prend une forme visible.<br><br>J'ai alors appris en autodidacte le HTML, le CSS et le JavaScript pour comprendre comment les sites étaient construits en profondeur. WordPress est venu dans la foulée : un outil no-code intuitif, des plugins pour tout, et un écosystème SEO déjà très complet. C'est lui qui m'a permis de créer rapidement mes premiers sites clients et de décrocher mes premiers contrats. C'est à cette même période que j'ai commencé à apprendre Figma, d'abord pour maîtriser l'outil, explorer ses méthodes, sans encore savoir exactement où ça allait me mener. Entre les examens et le rendu de thèse, j'ai livré mon premier site avant même d'avoir décroché mon diplôme.<br><br>Après ma thèse, j'ai pu aller plus loin. C'est là que j'ai découvert Webflow : un outil low-code pensé pour les designers, mais qui demande des mois à prendre en main entre les bonnes pratiques, le CMS, la logique de construction. En apprenant Webflow, j'ai aussi mesuré les limites de mes designs Figma de l'époque : j'avais fait au mieux, mais sans connaître l'outil de destination, certains choix rendaient l'intégration plus complexe. C'est cet écart qui m'a appris à créer avec une vision esthétique tout en respectant les contraintes du développement.</span>
+              <span class="lang-en">Drawn to code as much as design, I went into a data science master's at business school. Statistics, SQL, Python, Power BI, analysis: years of learning to read data with rigour and method. But something was missing. I loved coding, I loved the logic behind it, only all of that stayed very theoretical, very abstract, and I needed to see a concrete, visual result of what I was building. Websites arrived as the obvious answer: a space where code meets design, where what you write takes a visible form.<br><br>I then taught myself HTML, CSS, and JavaScript to understand how sites were built at a deeper level. WordPress came right after: an intuitive no-code tool, plugins for everything, and an already very complete SEO ecosystem. It's what allowed me to create my first client sites quickly and land my first contracts. It was during that same period that I started learning Figma, at first just to master the tool, explore its methods, without quite knowing where it would take me. Between exams and submitting my thesis, I delivered my first site before I'd even graduated.<br><br>After finishing my thesis, I was able to go further. That's when I discovered Webflow: a low-code tool built for designers, but one that takes months to get right between best practices, the CMS, the build logic. Learning Webflow also showed me the limits of my Figma designs from that period: I'd done my best, but without knowing the destination tool, some choices made the integration more complex. That gap is what taught me to create with an aesthetic vision while keeping the development constraints in mind.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag"><span class="lang-fr">Parcours</span><span class="lang-en">Journey</span></span>
         </article>
 
-        <!-- Article 3 -->
+        <!-- Article 3 — Six sites WordPress -->
         <article class="article-card">
-          <p class="article-date">
-            <span class="lang-fr">Mai 2026</span>
-            <span class="lang-en">May 2026</span>
-          </p>
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
           <h2 class="article-title">
-            <span class="lang-fr">Les outils IA qui transforment ma façon de travailler</span>
-            <span class="lang-en">The AI tools transforming my workflow</span>
+            <span class="lang-fr">J'ai appris le web design site après site.</span>
+            <span class="lang-en">I learned web design one site at a time.</span>
           </h2>
-          <p class="article-excerpt">
-            <span class="lang-fr">Claude, Cursor, Webflow IA… Ces outils ne remplacent pas la compréhension du code, ils l'amplifient. Voici comment je les utilise au quotidien.</span>
-            <span class="lang-en">Claude, Cursor, Webflow AI… These tools don't replace understanding code, they amplify it. Here's how I use them daily.</span>
-          </p>
-          <span class="article-tag">IA</span>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">J'ai commencé WordPress en parallèle de mes études, avec des tutoriels YouTube, des forums anglais, beaucoup d'essais-erreurs. Créer des sites, c'était ce qui réunissait les deux choses que j'aimais : le code et le design.<br><br>Dès le début, j'ai compris qu'on ne fait pas un site pour la beauté du site. On le fait pour être trouvé sur Google, amener des visiteurs, <strong style="color:var(--accent)">convertir</strong>. La visibilité prime sur tout le reste. Au-delà des designs appréciables, j'ai énormément travaillé sur ce qu'on ne voit pas : le SEO technique et éditorial, les performances, le maillage interne. J'ai vu concrètement comment chaque optimisation se traduit en résultats dans la Search Console. Ma formation en data science était un véritable atout : en data, l'objectif est toujours le même, améliorer une performance, optimiser un résultat. Je m'en suis servie pleinement ici.<br><br>Je n'ai jamais suivi de cours de web design. J'ai appris sur le terrain, en construisant, en cassant des choses, en reprenant depuis le début. C'est ce chemin-là qui m'a permis de créer mes propres process : un mode de travail, une organisation, un workflow qui m'appartiennent. Ça a pris du temps, mais aujourd'hui je sais exactement ce qu'il faut faire et ce qu'il faut éviter.</span>
+              <span class="lang-en">I started with WordPress alongside my studies: YouTube tutorials, English-language forums, a lot of trial and error. Building sites was what brought together the two things I loved: code and design.<br><br>From the beginning, I understood that you don't build a site for the beauty of the site. You build it to be found on Google, to bring in visitors, to <strong style="color:var(--accent)">convert</strong>. Visibility comes first. Beyond creating something worth looking at, I spent a lot of time working on what you don't see: technical and editorial SEO, performance, internal linking. I saw concretely how each optimisation translates into results in the Search Console. My data science training was a genuine asset: in data, the goal is always the same, improve a performance, optimise a result. I put that fully to work here.<br><br>I never took a web design course. I learned in the field, by building, breaking things, starting over. That's the path that let me build my own processes: a way of working, an organisation, a workflow that belongs to me. It took time, but today I know exactly what needs to be done and what needs to be avoided.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag">WordPress</span>
+        </article>
+
+        <!-- Article 4 — WebBuilder Studio -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">J'ai coupé Figma et Webflow. WebBuilder Studio est né là.</span>
+            <span class="lang-en">I cut Figma and Webflow. WebBuilder Studio was born from that.</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">Les difficultés financières m'ont amenée à rationner mes outils de création. Figma et Webflow se sont arrêtés en même temps : plus d'outil de conception, plus d'outil d'intégration visuelle, et un workflow à réinventer de zéro. J'ai cherché une alternative pour continuer à travailler. C'est là que j'ai découvert GrapesJS, un moteur d'éditeur visuel open source, entièrement gratuit, que je pouvais faire tourner directement dans VS Code. J'en ai fait un outil sur mesure : WebBuilder Studio. Ce n'était pas tout à fait dans mes plans. Mais construire un outil complexe à partir d'une contrainte m'a beaucoup appris. Il y a quelque chose de particulier dans le fait de devoir comprendre chaque composant assez profondément pour le construire à partir de rien, plutôt que de se contenter de le paramétrer. WebBuilder Studio est devenu à la fois un outil de travail, un laboratoire et un projet en soi. Aujourd'hui il fait tourner un éditeur visuel complet dans VS Code : bibliothèque de blocs, panneau de styles, export HTML propre. C'est un outil complètement fonctionnel. Il est taillé sur mesure pour mon workflow. Il n'a pas vocation à devenir un produit.<br><br>Le code qu'il y a dessous n'est pas encore tout à fait ce qu'il devrait être, et je le sais. Je construis quelque chose de complexe dans un domaine qui n'est pas le mien au départ. Au même titre que ma formation autodidacte sur les sites WordPress, le codage HTML, CSS, JavaScript, Figma et Webflow, j'apprends en faisant des erreurs, je les corrige et je recommence. C'est pour ça que je le vois comme un « bac à sable » autant que comme un outil de travail : il m'apprend les bonnes pratiques, la logique d'un code propre qui tient dans le temps. C'est un travail de longue haleine, mais c'est extrêmement formateur.<br><br>Il fait figure d'exception dans mon parcours professionnel. Dans ma page Mes projets, j'ai choisi de ne pas le présenter : cette page est faite pour les sites que j'ai créés ou designés, et WebBuilder Studio sort complètement du lot. J'ai donc choisi d'en parler ici, dans le journal, et dans ma page d'accueil où je décris mon workflow. Il fait partie de mon quotidien. J'ai beaucoup d'ambition pour ce projet. Il fera l'objet d'autres articles à l'avenir, autant sur les nouvelles features et les améliorations continues que sur ce qu'il m'apporte en temps gagné et en travail accompli.</span>
+              <span class="lang-en">Financial difficulties pushed me to ration my creation tools. Figma and Webflow stopped at the same time: no more design tool, no more visual integration tool, and a workflow to reinvent from scratch. I looked for an alternative to keep working. That's when I discovered GrapesJS, an open source visual editor engine, completely free, that I could run directly in VS Code. I turned it into a bespoke tool: WebBuilder Studio. It wasn't quite in the plan. But building a complex tool out of a constraint taught me a lot. There's something particular about having to understand each component deeply enough to build it from nothing, rather than just configuring it. WebBuilder Studio became a work tool, a lab and a project in its own right. Today it runs a full visual editor inside VS Code: block library, style panel, clean HTML export. It's a fully functional tool. It's tailored to my workflow. It's not meant to become a product.<br><br>The code underneath isn't quite what it should be yet, and I know it. I'm building something complex in a domain that isn't mine to begin with. Just like my self-taught learning across WordPress sites, HTML, CSS, JavaScript, Figma and Webflow, I learn by making mistakes, correcting them and starting over. That's why I see it as a "sandbox" as much as a work tool: it teaches me good practices, the logic of clean code that holds up over time. It's a long-haul project, but an incredibly formative one.<br><br>It stands out as an exception in my professional journey. In my Work page, I chose not to include it: that page is for the sites I've built or designed, and WebBuilder Studio is something else entirely. So I chose to talk about it here, in the journal, and on my homepage where I describe my workflow. It's part of my daily life. I have big ambitions for this project. It will be the subject of future articles, both on the new features I add and the ongoing improvements, and on what it brings me in time saved and work done.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag">WebBuilder Studio</span>
+        </article>
+
+        <!-- Article 5 — Aujourd'hui -->
+        <article class="article-card">
+          <p class="article-date"><span class="lang-fr">Juin 2026</span><span class="lang-en">June 2026</span></p>
+          <h2 class="article-title">
+            <span class="lang-fr">Aujourd'hui : remettre tout ça en ordre</span>
+            <span class="lang-en">Today: putting it all in order</span>
+          </h2>
+          <div class="article-body">
+            <p class="article-excerpt">
+              <span class="lang-fr">En ce moment, je construis ce portfolio. C'est la première fois que je rassemble dans un seul endroit tout ce que j'ai fait : les projets Web3 restés dans des fichiers Figma, les sites WordPress pour lesquels j'avais été payée mais qui n'apparaissaient nulle part dans mon profil, WebBuilder Studio qui existait dans mon VS Code mais pas encore sur GitHub. Mettre ça en ordre m'a forcée à regarder franchement ce que je sais faire, ce qui me manque encore, et où je veux aller.<br><br>La prochaine étape concrète : pousser WebBuilder Studio sur GitHub. Pour que le projet existe vraiment, pas juste dans mon environnement local.<br><br>Après ça, continuer à construire. Des clients, des projets, des compétences. Je suis disponible pour du freelance ou un emploi remote en web et design. Ce portfolio n'est pas encore fini. Aucun bon portfolio ne l'est jamais vraiment.</span>
+              <span class="lang-en">Right now, I'm building this portfolio. It's the first time I've gathered everything I've done into one place: the Web3 projects that stayed in Figma files, the WordPress sites I'd been paid for but that didn't appear anywhere in my profile, WebBuilder Studio that existed in my VS Code but not yet on GitHub. Pulling all of this together forced me to look honestly at what I know how to do, what I still lack, and where I want to go.<br><br>The next concrete step: pushing WebBuilder Studio to GitHub. For the project to actually exist, not just in my local environment.<br><br>After that, keep building. Clients, projects, skills. I'm available for freelance work or a remote position in web and design. This portfolio isn't finished yet. No good portfolio ever really is.</span>
+            </p>
+            <div class="article-fade"></div>
+          </div>
+          <button class="article-toggle">
+            <span class="lang-fr"><span class="toggle-more">...voir plus</span><span class="toggle-less">voir moins</span></span>
+            <span class="lang-en"><span class="toggle-more">...see more</span><span class="toggle-less">see less</span></span>
+          </button>
+          <span class="article-tag"><span class="lang-fr">Aujourd'hui</span><span class="lang-en">Today</span></span>
         </article>
 
       </div>
@@ -124,8 +172,8 @@
     <div class="container">
       <p class="footer-name">Oriane NYIKEINE</p>
       <div class="footer-links">
-        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">Email</a>
-        <a href="#" class="footer-link" title="GitHub — bientôt disponible">GitHub</a>
+        <a href="mailto:nyikeineoriane@gmail.com" class="footer-link">nyikeineoriane@gmail.com</a>
+        <a href="https://github.com/oriane-nyikeine" target="_blank" rel="noopener" class="footer-link">GitHub</a>
       </div>
       <p class="footer-copy">© 2026 Oriane NYIKEINE</p>
     </div>

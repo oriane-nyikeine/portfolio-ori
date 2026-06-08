@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /index-prive-a3k9zt.html
+Disallow: /work-prive-a3k9zt.html
+Disallow: /journal-prive-a3k9zt.html
