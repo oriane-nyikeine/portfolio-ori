@@ -18,4 +18,4 @@ Les RH au naturel · Horizon Media · Save Your Job From AI · AI Noobies · C F
 
 ## Liens
 
-[nyikeineoriane@gmail.com](mailto:nyikeineoriane@gmail.com)
+[orianenyikeine.fr](https://orianenyikeine.fr/) · [nyikeineoriane@gmail.com](mailto:nyikeineoriane@gmail.com)
